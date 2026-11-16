@@ -1,0 +1,39 @@
+Controlling LED using push button with Arduino UNO (Digital Read)
+
+void setup()
+{
+  pinMode(10, OUTPUT);   
+  pinMode(7, INPUT_PULLUP);  
+  pinMode(5, OUTPUT);   
+  pinMode(3, INPUT_PULLUP); 
+  Serial.begin(9600);    
+}
+
+void loop()
+{
+
+ if (digitalRead(7) == LOW)
+  {
+    digitalWrite(10, HIGH);
+    Serial.println("LED is ON");
+  }
+  else
+  {
+    digitalWrite(10, LOW);
+    Serial.println("LED is OFF");
+  }
+  
+  
+  if (digitalRead(3) == LOW)
+  {
+    digitalWrite(5, HIGH);
+    Serial.println("LED is ON");
+  }
+  else
+  {
+    digitalWrite(5, LOW);
+    Serial.println("LED is OFF");
+  }
+  
+  delay(100);
+}
