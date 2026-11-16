@@ -1,0 +1,29 @@
+Motion Detection using PIR Sensor and Arduino UNO
+
+void setup()
+{
+  pinMode(12, OUTPUT);
+  pinMode(4, INPUT);
+
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  int motion = digitalRead(4);
+
+  if (motion == HIGH)
+  {
+    digitalWrite(12, HIGH);
+    Serial.println("Motion Detected");
+  }
+  else
+  {
+    digitalWrite(12, LOW);
+    Serial.println("Motion Not Detected");
+  }
+
+  delay(1000);
+}
+
+    
