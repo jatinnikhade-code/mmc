@@ -1,0 +1,21 @@
+Aim: Interfacing potentiometer with Arduino UNO (Analog Read)
+
+const int potPin = A0;
+const int ledPin = 6;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  // Read potentiometer (0–1023)
+  int potValue = analogRead(potPin);
+
+  // Convert to PWM brightness (0–255)
+  int brightness = map(potValue, 0, 1023, 0, 255);
+
+  // Set LED brightness
+  analogWrite(ledPin, brightness);
+
+  delay(10);
+}
