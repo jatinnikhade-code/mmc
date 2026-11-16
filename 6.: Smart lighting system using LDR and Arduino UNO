@@ -1,0 +1,26 @@
+: Smart lighting system using LDR and Arduino UNO
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(2, OUTPUT);
+  pinMode(A0, INPUT);
+}
+
+void loop()
+{
+  int LDRStatus = analogRead(A0);
+
+  if (LDRStatus <= 523)
+  {
+    digitalWrite(2, HIGH);
+    Serial.print("Current light intensity value is - ");
+    Serial.println(LDRStatus);
+  }
+  else
+  {
+    digitalWrite(2, LOW);
+    Serial.print("Current light intensity value is - ");
+    Serial.println(LDRStatus);
+  }
+}
