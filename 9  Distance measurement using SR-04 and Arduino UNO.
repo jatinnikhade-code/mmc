@@ -1,0 +1,45 @@
+ Distance measurement using SR-04 and Arduino UNO. 
+
+ void setup()
+{
+  pinMode(4, OUTPUT);
+  pinMode(3, INPUT);
+  pinMode(12, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  long duration;
+  int distance;
+
+  // Send ultrasonic pulse
+  digitalWrite(4, LOW);
+  delayMicroseconds(2);
+
+  digitalWrite(4, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(4, LOW);
+
+  // Read echo time
+  duration = pulseIn(3, HIGH);
+
+  // Calculate distance in cm
+  distance = duration * 0.034 / 2;
+
+  Serial.print("Distance = ");
+  Serial.print(distance);
+  Serial.println(" cm");
+
+  // Turn on LED when object is within 20 cm
+  if (distance <= 20)
+  {
+    digitalWrite(12, HIGH);
+  }
+  else
+  {
+    digitalWrite(12, LOW);
+  }
+
+  delay(200);
+}
