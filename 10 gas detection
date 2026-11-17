@@ -1,0 +1,28 @@
+ Gas detection using MQ135/MQ2 and Arduino UNO.
+
+
+ void setup()
+{
+    pinMode(A0, INPUT);
+    pinMode(13, OUTPUT);
+    Serial.begin(9600);
+}
+
+void loop()
+{
+    int gas = 0;
+    gas = analogRead(A0);
+
+    if (gas >= 200)
+    {
+        Serial.println(gas);
+        Serial.println("gas detected");
+        digitalWrite(13, HIGH);
+    }
+    else
+    {
+        Serial.println(gas);
+        Serial.println("gas not detected");
+        digitalWrite(13, LOW);
+    }
+}
