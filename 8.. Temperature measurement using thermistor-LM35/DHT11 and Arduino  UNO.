@@ -1,0 +1,46 @@
+ Temperature measurement using thermistor-LM35/DHT11 and Arduino 
+UNO. 
+
+
+const int redLED = 12;
+const int greenLED = 8;
+const int tempPin = A0;
+
+void setup() {
+  Serial.begin(9600);
+
+  pinMode(redLED, OUTPUT);
+  pinMode(greenLED, OUTPUT);
+}
+
+void loop() {
+  // Read temperature sensor value
+  int sensorValue = analogRead(tempPin);
+
+  // Convert sensor value into voltage
+  float voltage = sensorValue * (5.0 / 1023.0);
+
+  // TMP36 temperature calculation
+  float temperatureC = (voltage - 0.5) * 100.0;
+
+  // Display temperature in Serial Monitor
+  Serial.print("Temperature: ");
+  Serial.print(temperatureC);
+  Serial.println(" C");
+
+  // Control LEDs according to temperature
+  if (temperatureC < 0.0) {
+    digitalWrite(redLED, HIGH);
+    digitalWrite(greenLED, LOW);
+
+    Serial.println("RED LED ON - Negative Temperature");
+  }
+  else {
+    digitalWrite(redLED, LOW);
+    digitalWrite(greenLED, HIGH);
+
+    Serial.println("GREEN LED ON - Positive Temperature");
+  }
+
+  delay(1000);
+}
